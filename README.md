@@ -31,3 +31,24 @@
 - 語言跟時間變更(settings.py)
   - LANGUAGE_CODE = 'zh-Hant'
   - TIME_ZONE = 'Asia/Taipei'
+
+##　 User
+
+- templates/user/register.html
+- views.py
+  - 新增 user_register 方法
+    - return render(request,'./user/register.html')
+- 新增 urls.py
+  - path('register/', views.user_register),
+
+##　 todolist
+
+- urls.py ==> user/urls.py
+  - path('user/',include('user.urls'))
+
+## python manage.py shell
+
+- from django.contrib.auth.models import User
+- User.objects.all()
+- User.objects.get(id=1)
+- User.objects.get(username='jerry')

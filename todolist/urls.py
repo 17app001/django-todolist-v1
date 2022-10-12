@@ -19,6 +19,6 @@ from django.urls import path,include
 # http://127.0.0.1:8000/user/register
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/',include('user.urls'))
+    path('',include('user.urls'))
   
 ]
