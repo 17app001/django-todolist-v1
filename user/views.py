@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 
 
+def user_logout(requset):
+    logout(requset)
+    return redirect('profile')
+
 def profile(request):
     return render(request,'./user/profile.html')
 

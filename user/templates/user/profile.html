@@ -1,19 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
-</head>
-
-<body>
-    <h1>Profile</h1>
-    <ul>
-        <li> {{user.username}}</li>
-        <li> {{user.email}}</li>
-    </ul>
-</body>
-
-</html>
+{% extends 'base.html' %}
+{% block content %}
+<h1>Profile</h1>
+{% if user.is_authenticated %}
+<ul>
+    <li> {{user.email}}</li>
+    <li> {{user.date_joined}}</li>
+</ul>
+{% endif %}
+{% endblock %}
