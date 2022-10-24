@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from .forms import MyUserForm
 
 @login_required
 def user_logout(requset):
@@ -50,9 +50,8 @@ def user_login(request):
 # Create your views here.
 def user_register(request):
     # 產生使用者表單
-    form = UserCreationForm()
-    message=''
-       
+    form = MyUserForm()
+    message=''       
     # 檢查是get or post
     if request.method=='GET':
         print('GET')
@@ -61,6 +60,7 @@ def user_register(request):
         username = request.POST.get('username')
         password1 = request.POST.get('password1')
         password2 = request.POST.get('password2')
+        email = request.POST.get('email')
         # 註冊功能
         # 密碼不能少於8各字元
         # 兩次密碼是否相同        
@@ -74,13 +74,12 @@ def user_register(request):
             if User.objects.filter(username=username).exists():
                 message='帳號重複'
             else:
-                user=User.objects.create_user(username=username,password=password1)
+                user=User.objects.create_user(username=username,password=password1,
+                email=email)
                 user.save()
                 message='註冊成功!' 
                 login(request,user)             
 
-                return redirect('profile') 
-                    
-        
+                return redirect('profile')        
 
     return render(request,'./user/register.html',{'form' : form,'message':message})
