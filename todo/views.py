@@ -1,9 +1,27 @@
+from unittest import TestSuite
 from django.shortcuts import redirect, render
 from django.shortcuts import get_object_or_404
 from .models import Todo
 from .forms import TodoForm
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def completed_by_id(request,id):
+     todo=Todo.objects.get(id=id)
+     todo.completed=not todo.completed
+     todo.date_completed=datetime.now() if todo.completed else None 
+     todo.save()
+
+     return redirect('todo')
+
+@login_required
+def delete(request,id):
+    todo=Todo.objects.get(id=id)
+    todo.delete()
+    return redirect('todo')
+
 
 @login_required
 def completed(request):
@@ -17,8 +35,7 @@ def completed(request):
 @login_required
 def createtodo(request):
     message=''
-    form=TodoForm()
-    
+    form=TodoForm()    
     try:
         if request.method=='POST':
             print(request.POST)
@@ -42,8 +59,9 @@ def todo(request):
     todos=None
     # 確定有使用者登入
     if request.user.is_authenticated:
-        todos=Todo.objects.filter(user=request.user,
-        completed=False)    
+        todos=Todo.objects.filter(user=request.user)
+       
+
 
     return render(request,'./todo/todo.html',{'todos':todos})
 
