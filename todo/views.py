@@ -3,8 +3,18 @@ from django.shortcuts import get_object_or_404
 from .models import Todo
 from .forms import TodoForm
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def completed(request):
+    # 篩選已完成項目
+    todos=Todo.objects.filter(user=request.user,
+    completed=True)
+    return render(request,'./todo/completed.html',
+    {'todos':todos})   
 
 
+@login_required
 def createtodo(request):
     message=''
     form=TodoForm()
@@ -32,11 +42,12 @@ def todo(request):
     todos=None
     # 確定有使用者登入
     if request.user.is_authenticated:
-        todos=Todo.objects.filter(user=request.user)    
+        todos=Todo.objects.filter(user=request.user,
+        completed=False)    
 
     return render(request,'./todo/todo.html',{'todos':todos})
 
-
+@login_required
 def viewtodo(request,id):
     try:       
         todo=Todo.objects.get(id=id)
