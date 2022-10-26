@@ -40,7 +40,7 @@
 
 <!-- todo=>None -->
 {% if not todos %}
-<h3>目前無代辦事項，請先新增...</h3>
+<h3>目前無代辦事項，請先<a href="{% url 'createtodo' %}">新增</a>...</h3>
 {% else %}
 {% for todo in todos %}
 <li>
