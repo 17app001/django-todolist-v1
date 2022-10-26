@@ -10,5 +10,11 @@
     <li> 加入時間:{{user.date_joined}}</li>
     <li> 最後登入:{{user.last_login}}</li>
 </ul>
+<hr>
+<form action="" method="POST">
+    {% csrf_token %}
+    更新Email:<input type="email" name="" id="" value="{{user.email}}">
+    <button type="submit">更新</button>
+</form>
 {% endif %}
 {% endblock %}
