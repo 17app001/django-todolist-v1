@@ -9,6 +9,7 @@ header {
 header>a {
     margin-left: 6px;
     text-decoration: none;
+    color: white;
 }
 
 header>a:visited {
