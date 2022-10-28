@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2-7v9%#8xz%886uu=3+m+vc-!=9&c1@&0z#+8zvl6ursci$k8$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -88,28 +88,28 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 # }
 
 # MYSQL版本
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'todolist',
-#         'USER':'root',
-#         'PASSWORD':'12345678',
-#         'HOST':'127.0.0.1',
-#         'PORT':'3306'
-#     }
-# }
-
-# AWS MYSQL版本
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'todolist',
-        'USER':'admin',
+        'USER':'root',
         'PASSWORD':'12345678',
-        'HOST':'database-1.cviktbifdeon.ap-northeast-1.rds.amazonaws.com',
+        'HOST':'127.0.0.1',
         'PORT':'3306'
     }
 }
+
+# AWS MYSQL版本
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'todolist',
+#         'USER':'admin',
+#         'PASSWORD':'12345678',
+#         'HOST':'database-1.cviktbifdeon.ap-northeast-1.rds.amazonaws.com',
+#         'PORT':'3306'
+#     }
+# }
 
 
 
@@ -162,3 +162,7 @@ STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL='/user/login/'
+
+# 設定meida
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')

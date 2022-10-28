@@ -12,6 +12,8 @@ class Todo(models.Model):
     important=models.BooleanField(default=False)
     completed=models.BooleanField(default=False)
 
+    image=models.ImageField(blank=True,null=True,default='default.jpg')
+
     user=models.ForeignKey(User,on_delete=models.CASCADE)
 
     

@@ -31,11 +31,12 @@
     </li>
 </ul>
 <hr>
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     <input type="submit" name="update" value="更新">
     <input type="submit" name="delete" value="刪除">
 
 </form>
+{{todo.todo_image.url}}
 {% endblock %}

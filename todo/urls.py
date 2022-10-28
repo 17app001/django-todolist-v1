@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -10,3 +9,4 @@ urlpatterns = [
     path('delete/<int:id>',views.delete,name='delete'),
     path('completed/<int:id>',views.completed_by_id,name='completed_by_id'),
 ]
+

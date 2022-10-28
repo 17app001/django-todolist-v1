@@ -40,7 +40,7 @@ def createtodo(request):
         if request.method=='POST':
             print(request.POST)
             if request.user.is_authenticated:
-                form=TodoForm(request.POST)
+                form=TodoForm(request.POST,request.FILES)
                 todo=form.save(commit=False)
                 todo.user=request.user
                 todo.date_completed=datetime.now() if todo.completed else None               
@@ -77,7 +77,7 @@ def viewtodo(request,id):
             # 更新
             if request.POST.get('update'):
                 # 將POST回傳值填入todo，產生Form表單
-                form=TodoForm(request.POST,instance=todo)
+                form=TodoForm(request.POST,request.FILES,instance=todo)
                 if form.is_valid():
                     # 資料暫存
                     todo=form.save(commit=False)
