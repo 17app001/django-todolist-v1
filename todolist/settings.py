@@ -88,28 +88,28 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 # }
 
 #MYSQL版本
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'todolist',
-        'USER':'root',
-        'PASSWORD':'12345678',
-        'HOST':'127.0.0.1',
-        'PORT':'3306'
-    }
-}
-
-# AWS MYSQL版本
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'todolist',
-#         'USER':'admin',
+#         'USER':'root',
 #         'PASSWORD':'12345678',
-#         'HOST':'database-1.cviktbifdeon.ap-northeast-1.rds.amazonaws.com',
+#         'HOST':'127.0.0.1',
 #         'PORT':'3306'
 #     }
 # }
+
+#AWS MYSQL版本
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'todolist',
+        'USER':'admin',
+        'PASSWORD':'12345678',
+        'HOST':'database-1.cviktbifdeon.ap-northeast-1.rds.amazonaws.com',
+        'PORT':'3306'
+    }
+}
 
 
 
@@ -162,3 +162,7 @@ STATICFILES_STORAGE ='whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL='/user/login/'
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'static/media')
+
+MEDIA_URL='/media/'

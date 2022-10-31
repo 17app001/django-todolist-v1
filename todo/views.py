@@ -42,7 +42,7 @@ def createtodo(request):
     form=TodoForm()    
     try:
         if request.method=='POST':
-            print(request.POST)
+            print(request.POST,request.FILES)
             if request.user.is_authenticated:
                 form=TodoForm(request.POST,request.FILES)
                 todo=form.save(commit=False)

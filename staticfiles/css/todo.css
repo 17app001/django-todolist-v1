@@ -20,3 +20,8 @@ button {
     padding: 4px 8px;
 
 }
+
+img {
+    margin-top: 12px;
+    border-radius: 6px;
+}
