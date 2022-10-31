@@ -15,11 +15,11 @@
 {% if not request.user.is_authenticated %}
 <h3>請先註冊或登入</h3>
 {% else %}
-
 <!-- todo=>None -->
 {% if not todos %}
 <h3>目前無代辦事項，請先<a href="{% url 'createtodo' %}">新增</a>...</h3>
 {% else %}
+<div><a href="{% url 'sort' %}">排序</a></div>
 {% for todo in todos %}
 <li>
     {% if todo.important %}
